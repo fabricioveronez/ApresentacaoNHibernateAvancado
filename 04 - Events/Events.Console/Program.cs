@@ -6,6 +6,7 @@ using NHibernate;
 using NHibernate.Event;
 using Events.Entidades.Listeners;
 using System.Linq;
+using System;
 
 namespace Events.Console
 {
@@ -20,24 +21,24 @@ namespace Events.Console
                              m.FluentMappings
                              .AddFromAssemblyOf<EmployeesMap>())
                          .ExposeConfiguration(c =>
-                            c.EventListeners.LoadEventListeners = new ILoadEventListener[] { new LoadListener() })
+                            c.EventListeners.PostInsertEventListeners = new IPostInsertEventListener[] { new InsertListener() })
                          .BuildSessionFactory();
 
             ISession session = sessionFactory.OpenSession();
 
-            var orders = session.Query<Orders>().ToList();
 
-            //Orders order = new Orders()
-            //{
-            //    Customer = new Customers() { CustomerID = "ANTON" },
-            //    Employee = new Employees() { EmployeeID = 1 },
-            //    RequiredDate = DateTime.Now,
-            //    ShippedDate = DateTime.Now.AddDays(7),
-            //};
 
-            //session.SaveOrUpdate(order);
-            //session.Flush();
-            //session.Clear();
+            Orders order = new Orders()
+            {
+                Customer = new Customers() { CustomerID = "ANTON" },
+                Employee = new Employees() { EmployeeID = 1 },
+                RequiredDate = DateTime.Now,
+                ShippedDate = DateTime.Now.AddDays(7),
+            };
+
+            session.SaveOrUpdate(order);
+            session.Flush();
+            session.Clear();
 
         }
     }

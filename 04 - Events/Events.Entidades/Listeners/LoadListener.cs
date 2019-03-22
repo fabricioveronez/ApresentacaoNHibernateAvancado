@@ -1,4 +1,5 @@
-﻿using NHibernate.Event;
+﻿using Newtonsoft.Json;
+using NHibernate.Event;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,16 +8,22 @@ using System.Threading.Tasks;
 
 namespace Events.Entidades.Listeners
 {
-    public class LoadListener : ILoadEventListener
+    public class InsertListener : IPostInsertEventListener
     {
-        public void OnLoad(LoadEvent @event, LoadType loadType)
+        public void OnPostInsert(PostInsertEvent @event)
         {
-            
+            Console.WriteLine(JsonConvert.SerializeObject(@event.Entity, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            }));
         }
 
-        public Task OnLoadAsync(LoadEvent @event, LoadType loadType, CancellationToken cancellationToken)
+        public Task OnPostInsertAsync(PostInsertEvent @event, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Console.WriteLine(JsonConvert.SerializeObject(@event.Entity, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            })));
         }
     }
 }

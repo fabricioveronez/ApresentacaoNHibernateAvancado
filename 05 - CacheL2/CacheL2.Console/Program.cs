@@ -29,7 +29,7 @@ namespace CacheL2.Console
             System.Console.WriteLine(product1.ProductName);
 
             ISession session2 = sessionFactory.OpenSession();
-            Products product2 = session1.Get<Products>(1);
+            Products product2 = session2.Get<Products>(1);
 
              System.Console.WriteLine(product2.ProductName);
 

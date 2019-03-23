@@ -17,12 +17,10 @@ namespace CacheL2.Console
                          .Database(MsSqlConfiguration.MsSql2012.ConnectionString("Data Source=localhost;Initial Catalog=Northwind;User ID=sa;Password=Northwind0123")
                          .ShowSql().FormatSql())
                          .Cache(c => 
-                             c.UseSecondLevelCache()
-                              .ProviderClass<NHibernate.Caches.StackExchangeRedis.RedisCacheProvider>()
+                             c.UseSecondLevelCache().ProviderClass<NHibernate.Caches.StackExchangeRedis.RedisCacheProvider>()
                          )
                          .Mappings(m =>
-                             m.FluentMappings
-                             .AddFromAssemblyOf<EmployeesMap>()
+                             m.FluentMappings.AddFromAssemblyOf<EmployeesMap>()
                          )
                          .ExposeConfiguration(cfg => cfg.SetProperty("cache.configuration", "localhost:6379"))
                          .BuildSessionFactory();

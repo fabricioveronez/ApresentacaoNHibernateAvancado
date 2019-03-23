@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Events.Entidades.Mapeamento
+namespace TesteMapeamento.Entidades.Mapeamento
 {
     public class ProductsMap : ClassMap<Products>
     {
         public ProductsMap()
         {
-            Table("[Products]");
+            Table("[Products]");            
             Id(x => x.ProductID, "[ProductID]").GeneratedBy.Identity();
             Map(x => x.ProductName, "[ProductName]").Not.Nullable().Length(80);
             References(x => x.Supplier)

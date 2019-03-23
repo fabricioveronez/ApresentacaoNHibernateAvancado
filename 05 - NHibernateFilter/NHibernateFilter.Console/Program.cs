@@ -15,7 +15,7 @@ namespace NHibernateFilter.Console
         static void Main(string[] args)
         {
             ISessionFactory sessionFactory = Fluently.Configure()
-                         .Database(MsSqlConfiguration.MsSql2012.ConnectionString("Data Source=localhost;Initial Catalog=Northwind;User ID=sa;Password=Northwing0123")
+                         .Database(MsSqlConfiguration.MsSql2012.ConnectionString("Data Source=localhost;Initial Catalog=Northwind;User ID=sa;Password=Northwind0123")
                          .ShowSql().FormatSql())
                          .Mappings(m =>
                              m.FluentMappings

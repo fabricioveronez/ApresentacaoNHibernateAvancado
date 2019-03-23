@@ -9,7 +9,8 @@ namespace NHibernateFilter.Entidades.Mapeamento
     {
         public ProductsMap()
         {
-            Table("[Products]");
+            Cache.NonStrictReadWrite();
+            Table("[Products]");            
             Id(x => x.ProductID, "[ProductID]").GeneratedBy.Identity();
             Map(x => x.ProductName, "[ProductName]").Not.Nullable().Length(80);
             References(x => x.Supplier)

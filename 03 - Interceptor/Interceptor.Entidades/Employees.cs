@@ -19,7 +19,7 @@ namespace Interceptor.Entidades
         public virtual string FirstName { get; set; }
         public virtual string Title { get; set; }
         public virtual string TitleOfCourtesy { get; set; }
-        public virtual DateTime? BirthDate { get; set; }
+        public virtual DateTime BirthDate { get; set; }
         public virtual IList<Territories> Territories { get; set; }
         public virtual DateTime HireDate { get; set; }
         public virtual string Address { get; set; }

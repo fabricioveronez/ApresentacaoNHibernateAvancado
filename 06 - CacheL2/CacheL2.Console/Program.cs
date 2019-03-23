@@ -14,13 +14,13 @@ namespace CacheL2.Console
         static void Main(string[] args)
         {
             ISessionFactory sessionFactory = Fluently.Configure()
-                         .Database(MsSqlConfiguration.MsSql2012.ConnectionString("Data Source=localhost;Initial Catalog=Northwind;User ID=sa;Password=Northwing0123")                         
+                         .Database(MsSqlConfiguration.MsSql2012.ConnectionString("Data Source=localhost;Initial Catalog=Northwind;User ID=sa;Password=Northwind0123")
                          .ShowSql().FormatSql())
-                         .Cache(c => c.UseSecondLevelCache().ProviderClass(typeof(NHibernate.Caches.StackExchangeRedis.RedisCacheProvider).AssemblyQualifiedName))                         
+                         .Cache(c => c.UseSecondLevelCache().ProviderClass(typeof(NHibernate.Caches.StackExchangeRedis.RedisCacheProvider).AssemblyQualifiedName))
                          .Mappings(m =>
                              m.FluentMappings
                              .AddFromAssemblyOf<EmployeesMap>())
-                         .ExposeConfiguration(cfg=> cfg.SetProperty("cache.configuration", "localhost:6379"))
+                         .ExposeConfiguration(cfg => cfg.SetProperty("cache.configuration", "localhost:6379"))
                          .BuildSessionFactory();
 
             ISession session1 = sessionFactory.OpenSession();
@@ -31,8 +31,7 @@ namespace CacheL2.Console
             ISession session2 = sessionFactory.OpenSession();
             Products product2 = session2.Get<Products>(1);
 
-             System.Console.WriteLine(product2.ProductName);
-
+            System.Console.WriteLine(product2.ProductName);
         }
     }
 }

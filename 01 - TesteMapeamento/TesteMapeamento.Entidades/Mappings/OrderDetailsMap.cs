@@ -1,14 +1,13 @@
 ﻿using FluentNHibernate.Mapping;
 
-namespace NHibernateFilter.Entidades.Mapeamento
+namespace TesteMapeamento.Entidades.Mapeamento
 {
     public class OrderDetailsMap : ClassMap<OrderDetails>
     {
         public OrderDetailsMap()
         {
             Table("[OrderDetails]");
-            Id(x => x.OrderID, "[OrderID]").Not.Nullable().Length(4).Precision(10);
-            Id(x => x.ProductID, "[ProductID]").Not.Nullable().Length(4).Precision(10);
+            Id(x => x.OrderDetailsID, "[OrderDetailsID]").GeneratedBy.Identity();
             References(x => x.Order)
                 .ForeignKey("[OrderDetails.FK_Order_Details_Orders]")
                 .Columns("[OrderID]");

@@ -1,5 +1,4 @@
 ﻿using FluentNHibernate.Mapping;
-using NHibernateFilter.Entidades.Filters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,7 +34,6 @@ namespace NHibernateFilter.Entidades.Mapeamento
             Map(x => x.ShipRegion, "[ShipRegion]").Nullable().Length(30);
             Map(x => x.ShipPostalCode, "[ShipPostalCode]").Nullable().Length(20);
             Map(x => x.ShipCountry, "[ShipCountry]").Nullable().Length(30);
-            ApplyFilter<OrdersFilter>("EmployeeID = :idEmployee");
         }
     }
 }

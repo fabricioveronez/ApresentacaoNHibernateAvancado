@@ -1,5 +1,4 @@
 ﻿using FluentNHibernate.Mapping;
-using NHibernateFilter.Entidades.Filters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,7 +42,7 @@ namespace NHibernateFilter.Entidades.Mapeamento
                 .Table("[Employees]")
                 .KeyColumn("[ReportsTo]")
                 .ForeignKeyConstraintName("[Employees.FK_Employees_Employees]");
-            Map(x => x.PhotoPath, "[PhotoPath]").Nullable().Length(510);            
+            Map(x => x.PhotoPath, "[PhotoPath]").Nullable().Length(510);
         }
     }
 }

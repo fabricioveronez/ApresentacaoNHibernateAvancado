@@ -3,14 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CacheL2.Entidades.Mapeamento
+namespace Events.Entidades.Mapeamento
 {
     public class ProductsMap : ClassMap<Products>
     {
         public ProductsMap()
         {
-            Cache.NonStrictReadWrite();
-            Table("[Products]");
+            Table("[Products]");            
             Id(x => x.ProductID, "[ProductID]").GeneratedBy.Identity();
             Map(x => x.ProductName, "[ProductName]").Not.Nullable().Length(80);
             References(x => x.Supplier)

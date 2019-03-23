@@ -12,18 +12,14 @@ namespace Events.Entidades.Listeners
     {
         public void OnPostInsert(PostInsertEvent @event)
         {
-            Console.WriteLine(JsonConvert.SerializeObject(@event.Entity, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            }));
+            Orders order = (Orders)@event.Entity;
+            Console.WriteLine($@"Insert - {order.OrderID}");
         }
 
         public Task OnPostInsertAsync(PostInsertEvent @event, CancellationToken cancellationToken)
         {
-            return Task.Run(() => Console.WriteLine(JsonConvert.SerializeObject(@event.Entity, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            })));
+            Orders order = (Orders)@event.Entity;
+            return Task.Run(() => Console.WriteLine($@"Insert - {order.OrderID}"));
         }
     }
 }

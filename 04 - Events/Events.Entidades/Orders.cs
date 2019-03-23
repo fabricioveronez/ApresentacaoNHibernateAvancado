@@ -15,9 +15,9 @@ namespace Events.Entidades
         public virtual int OrderID { get; set; }
         public virtual Customers Customer { get; set; }
         public virtual Employees Employee { get; set; }
-        public virtual DateTime OrderDate { get; set; }
-        public virtual DateTime RequiredDate { get; set; }
-        public virtual DateTime ShippedDate { get; set; }
+        public virtual DateTime? OrderDate { get; set; }
+        public virtual DateTime? RequiredDate { get; set; }
+        public virtual DateTime? ShippedDate { get; set; }
         public virtual Shippers Shipper { get; set; }
         public virtual IList<OrderDetails> OrderDetails { get; set; }
         public virtual decimal Freight { get; set; }

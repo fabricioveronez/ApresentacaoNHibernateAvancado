@@ -20,13 +20,13 @@ namespace Events.Console
                          .Mappings(m =>
                              m.FluentMappings
                              .AddFromAssemblyOf<EmployeesMap>())
-                         .ExposeConfiguration(c =>
-                            c.EventListeners.PostInsertEventListeners = new IPostInsertEventListener[] { new InsertListener() })
+                         .ExposeConfiguration(c => {
+                             c.EventListeners.PostInsertEventListeners = new IPostInsertEventListener[] { new InsertListener() };
+                             c.EventListeners.PostUpdateEventListeners = new IPostUpdateEventListener[] { new UpdateListener() };
+                         })
                          .BuildSessionFactory();
 
             ISession session = sessionFactory.OpenSession();
-
-
 
             Orders order = new Orders()
             {
@@ -37,9 +37,12 @@ namespace Events.Console
             };
 
             session.SaveOrUpdate(order);
-            session.Flush();
-            session.Clear();
 
+            Orders orderUpdate = session.Load<Orders>(10251);
+            orderUpdate.ShipCountry = "Brazil";
+            session.SaveOrUpdate(orderUpdate);
+           
+            session.Flush();
         }
     }
 }

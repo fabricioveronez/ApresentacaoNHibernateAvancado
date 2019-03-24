@@ -3,8 +3,10 @@ using ExemploNMais1.Entidades.Mapeamento;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ExemploNMais1.Console
 {
@@ -21,14 +23,17 @@ namespace ExemploNMais1.Console
                          .BuildSessionFactory();
 
             ISession session = sessionFactory.OpenSession();
-
             IEnumerable<Products> products = session.Query<Products>();
-            //IEnumerable<Products> products = session.CreateCriteria<Products>().SetFetchMode("Category", FetchMode.Eager).List<Products>(); 
+            //IEnumerable<Products> products = session.CreateCriteria<Products>().SetFetchMode("Category", FetchMode.Eager).List<Products>();
+            //IEnumerable<Products> products = session.Query<Products>().Fetch(x => x.Category);
 
             foreach (var product in products)
             {
-                System.Console.WriteLine ( $"{product.ProductName} - {product.Category.CategoryName}");
+                System.Console.WriteLine($"{product.ProductName} - {product.Category.CategoryName}");
             }
+
+
+
         }
     }
 }

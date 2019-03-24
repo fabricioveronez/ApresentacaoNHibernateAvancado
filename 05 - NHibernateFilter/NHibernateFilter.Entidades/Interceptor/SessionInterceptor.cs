@@ -12,15 +12,5 @@ namespace NHibernateFilter.Entidades.Interceptor
         {
             session.EnableFilter("OrdersConditionFilter").SetParameter("idEmployee", 1);
         }
-
-        public override bool OnLoad(object entity, object id, object[] state, string[] propertyNames, IType[] types)
-        {
-            return base.OnLoad(entity, id, state, propertyNames, types);
-        }
-
-        public override void AfterTransactionBegin(ITransaction tx)
-        {
-            base.AfterTransactionBegin(tx);
-        }
     }
 }

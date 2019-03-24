@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  nhibernatefeatured:
+    image: ${DOCKER_REGISTRY-}nhibernatefeatured
+    build:
+      context: .
+      dockerfile: NHibernateFeatured/Dockerfile
+    networks:
+      - nh_net
+
+
+  mssql:
+    image: luizcarlosfaria/mssql-server-linux:latest
+    ports:
+      - "1433:1433"    
+    volumes:
+      - ./SqlServer/:/docker-entrypoint-initdb.d/
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=8k3W2C2BVzAW9p
+    networks:
+      - nh_net
+
+
+
+networks:
+  nh_net:
+    driver: bridge

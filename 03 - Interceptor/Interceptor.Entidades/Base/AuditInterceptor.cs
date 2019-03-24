@@ -7,35 +7,6 @@ namespace Interceptor.Base
 {
     public class AuditInterceptor : EmptyInterceptor
     {
-
-        public override void OnDelete(object entity,
-                                      object id,
-                                      object[] state,
-                                      string[] propertyNames,
-                                      IType[] types)
-        {
-
-        }
-
-        public override bool OnFlushDirty(object entity,
-                                          object id,
-                                          object[] currentState,
-                                          object[] previousState,
-                                          string[] propertyNames,
-                                          IType[] types)
-        {
-            return false;
-        }
-
-        public override bool OnLoad(object entity,
-                                    object id,
-                                    object[] state,
-                                    string[] propertyNames,
-                                    IType[] types)
-        {
-            return false;
-        }
-
         public override bool OnSave(object entity,
                                     object id,
                                     object[] state,
@@ -49,7 +20,6 @@ namespace Interceptor.Base
                     if ("OrderDate".Equals(propertyNames[i]))
                     {
                         state[i] = DateTime.Now;
-
                         return true;
                     }
                 }

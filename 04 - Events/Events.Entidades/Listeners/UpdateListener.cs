@@ -12,14 +12,24 @@ namespace Events.Entidades.Listeners
     {
         public void OnPostUpdate(PostUpdateEvent @event)
         {
-            Orders order = (Orders)@event.Entity;
-            Console.WriteLine($@"Update - {order.OrderID}");
+            if (@event.Entity is Orders)
+            {
+                Orders order = (Orders)@event.Entity;
+                Console.WriteLine($@"Update - {order.OrderID}");
+            }
         }
 
         public Task OnPostUpdateAsync(PostUpdateEvent @event, CancellationToken cancellationToken)
         {
-            Orders order = (Orders)@event.Entity;
-            return Task.Run(() => Console.WriteLine($@"Update - {order.OrderID}"));
+            if (@event.Entity is Orders)
+            {
+                Orders order = (Orders)@event.Entity;
+                return Task.Run(() => Console.WriteLine($@"Update - {order.OrderID}"));
+            }
+            else
+            {
+                return Task.Run(() => { });
+            }
         }
     }
 }

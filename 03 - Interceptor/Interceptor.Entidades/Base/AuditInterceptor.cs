@@ -26,10 +26,5 @@ namespace Interceptor.Base
             }
             return false;
         }
-
-        public override void AfterTransactionCompletion(ITransaction tx)
-        {
-
-        }
     }
 }

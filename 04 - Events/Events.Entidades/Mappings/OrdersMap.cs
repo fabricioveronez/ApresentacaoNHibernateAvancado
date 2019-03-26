@@ -26,7 +26,7 @@ namespace Events.Entidades.Mapeamento
             HasMany(x => x.OrderDetails)
                 .Table("[OrderDetails]")
                 .ForeignKeyConstraintName("[OrderDetails.FK_Order_Details_Orders]")
-                .KeyColumn("[OrderID]");
+                .KeyColumn("[OrderID]").Cascade.AllDeleteOrphan().Inverse();
             Map(x => x.Freight, "[Freight]").Nullable().Length(8).Precision(19);
             Map(x => x.ShipName, "[ShipName]").Nullable().Length(80);
             Map(x => x.ShipAddress, "[ShipAddress]").Nullable().Length(120);

@@ -23,6 +23,7 @@ namespace Events.Console
                          .ExposeConfiguration(c => {
                              c.EventListeners.PostInsertEventListeners = new IPostInsertEventListener[] { new InsertListener() };
                              c.EventListeners.PostUpdateEventListeners = new IPostUpdateEventListener[] { new UpdateListener() };
+                             c.EventListeners.PostDeleteEventListeners= new IPostDeleteEventListener[] { new DeleteListener() };
                          })
                          .BuildSessionFactory();
 
@@ -41,7 +42,10 @@ namespace Events.Console
             Orders orderUpdate = session.Load<Orders>(10251);
             orderUpdate.ShipCountry = "Brazil";
             session.SaveOrUpdate(orderUpdate);
-           
+
+            Orders orderDelete = session.Load<Orders>(10253);            
+            session.Delete(orderDelete);
+
             session.Flush();
         }
     }

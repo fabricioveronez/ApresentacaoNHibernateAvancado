@@ -23,11 +23,32 @@ namespace NHibernateFilter.Console
                          .BuildSessionFactory();
 
             ISession session = sessionFactory.OpenSession();
-            session.EnableFilter("OrdersConditionFilter").SetParameter("idEmployee", 1);
 
-            IEnumerable<Orders> employees = session.Query<Orders>().Where(e => e.Customer.CustomerID.Equals("TORTU")).ToList();
+            IEnumerable<Orders> ordersCustomer = session.Query<Orders>()
+               .Where(e => e.Customer.CustomerID.Equals("TORTU") && e.Employee.EmployeeID == 1).ToList();
 
-            System.Console.WriteLine(string.Join('\n', employees.Select(o => o.OrderID)));
+            IEnumerable<Orders> ordersCity = session.Query<Orders>()
+                .Where(e => e.ShipCity.Equals("Rio de Janeiro") && e.Employee.EmployeeID == 1).ToList();
+
+            IEnumerable<Orders> ordersCountry = session.Query<Orders>()
+                .Where(e => e.ShipCountry.Equals("Brazil") && e.Employee.EmployeeID == 1).ToList();
+
+            //ISession session = sessionFactory.OpenSession();
+            //session.EnableFilter("OrdersConditionFilter").SetParameter("idEmployee", 1);
+
+            //IEnumerable<Orders> ordersCustomer = session.Query<Orders>()
+            //    .Where(e => e.Customer.CustomerID.Equals("TORTU")).ToList();
+
+            //IEnumerable<Orders> ordersCity = session.Query<Orders>()
+            //    .Where(e => e.ShipCity.Equals("Rio de Janeiro")).ToList();
+
+            //IEnumerable<Orders> ordersCountry = session.Query<Orders>()
+            //    .Where(e => e.ShipCountry.Equals("Brazil")).ToList();
+
+
+
+
+            System.Console.WriteLine(string.Join('\n', ordersCustomer.Select(o => o.OrderID)));
         }
     }
 }

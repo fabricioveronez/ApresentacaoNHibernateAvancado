@@ -31,9 +31,6 @@ namespace ExemploNMais1.Console
             {
                 System.Console.WriteLine($"{product.ProductName} - {product.Category.CategoryName}");
             }
-
-
-
         }
     }
 }

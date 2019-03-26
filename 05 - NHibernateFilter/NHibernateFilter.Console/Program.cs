@@ -33,6 +33,8 @@ namespace NHibernateFilter.Console
             IEnumerable<Orders> ordersCountry = session.Query<Orders>()
                 .Where(e => e.ShipCountry.Equals("Brazil") && e.Employee.EmployeeID == 1).ToList();
 
+            //ISession session = sessionFactory.WithOptions().Interceptor(new SessionInterceptor()).OpenSession();
+
             //ISession session = sessionFactory.OpenSession();
             //session.EnableFilter("OrdersConditionFilter").SetParameter("idEmployee", 1);
 
@@ -45,10 +47,12 @@ namespace NHibernateFilter.Console
             //IEnumerable<Orders> ordersCountry = session.Query<Orders>()
             //    .Where(e => e.ShipCountry.Equals("Brazil")).ToList();
 
+            //System.Console.WriteLine(string.Join('\n', ordersCustomer.Select(o => o.OrderID)));
 
+            //System.Console.WriteLine(string.Join('\n', ordersCity.Select(o => o.OrderID)));
 
+            //System.Console.WriteLine(string.Join('\n', ordersCountry.Select(o => o.OrderID)));
 
-            System.Console.WriteLine(string.Join('\n', ordersCustomer.Select(o => o.OrderID)));
         }
     }
 }

@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  sql:
+    image: "fabricioveronez/northwind-database"
+    ports:
+      - "1433:1433"
+      - "1434:1434"
+      - "443:443" 
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
